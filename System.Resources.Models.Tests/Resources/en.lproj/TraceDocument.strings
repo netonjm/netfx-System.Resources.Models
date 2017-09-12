@@ -1,0 +1,15 @@
+
+/* Class = "NSWindow"; title = "Xamarin Profiler"; ObjectID = "1"; */
+"1.title" = "Xamarin Profiler Translation";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Add more instruments"; ObjectID = "2hB-et-laP"; */
+"2hB-et-laP.ibShadowedToolTip" = "Add more instruments";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Take a memory snapshot"; ObjectID = "9Eg-9e-Qz1"; */
+"9Eg-9e-Qz1.ibShadowedToolTip" = "Take a memory snapshot";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Start Profiling"; ObjectID = "Uuc-pB-Ywf"; */
+"Uuc-pB-Ywf.ibShadowedToolTip" = "Start Profiling";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pause"; ObjectID = "V0u-e6-jXl"; */
+"V0u-e6-jXl.ibShadowedToolTip" = "Pause";
