@@ -17,6 +17,7 @@ namespace System.Resources.Models
 
 		public ResxResource () : base ("Translations.resx.template")
 		{
+			Document = XDocument.Parse (resourceData);
 			Data = new List<StringTitleDefinition> ();
 		}
 
@@ -32,7 +33,7 @@ namespace System.Resources.Models
 		{
 			var toRemoveElements = Document.Root.Elements ("data")
 			                              .ToList ();
-
+			
 			foreach (var item in toRemoveElements) {
 				item.Remove ();
 			}
@@ -40,8 +41,6 @@ namespace System.Resources.Models
 			foreach (var element in Data) {
 				Document.Root.Add (element.ToXElement ());
 			}
-
-			resourceResult = Document.ToString ();
 		}
 
 		public void AddMissingDefinitions (List<StringTitleDefinition> data, bool removeDifferences = false)
@@ -94,7 +93,7 @@ namespace System.Resources.Models
 		/// <param name="fileName">Destination file.</param>
 		public void Save (string fileName)
 		{
-			File.WriteAllText (fileName, resourceResult);
+			Document.Save (fileName);
 		}
 	}
 }
