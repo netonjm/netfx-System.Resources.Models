@@ -112,5 +112,36 @@ namespace System.Resources.Models.Tests
 			model.Load (Resources.DefaultResourcesResX);
 			Assert.IsTrue (model.Data.Count > 0, "#1");
 		}
+
+		[Test ()]
+		public void when_save_resx_then_restore_same_data ()
+		{
+			model.Load (Resources.DefaultResourcesResX);
+			var actualData = model.Data;
+
+			var file = Path.Combine (Resources.TmpDirectory, "data.xml");
+			if (File.Exists (file))
+				File.Delete (file);
+			
+			model.Save (file);
+
+			model.Load (Resources.DefaultResourcesResX);
+			model.Load (file);
+
+			Assert.AreEqual (actualData.Count, model.Data.Count, "#1");
+
+			StringTitleDefinition tmp;
+
+			foreach (var item in model.Data) {
+				tmp = actualData.FirstOrDefault (s => s.ResxID == item.ResxID);
+				Assert.IsNotNull (tmp, item.ResxID + " > null");
+				Assert.AreEqual (item.Title, tmp.Title, item.ResxID + " > Title");
+				Assert.AreEqual (item.Comment, tmp.Comment, item.ResxID + " > Comment");
+				Assert.IsTrue (actualData.Any (s => s.ResxID == item.ResxID));
+			}
+
+			if (File.Exists (file))
+				File.Delete (file);
+		}
 	}
 }
