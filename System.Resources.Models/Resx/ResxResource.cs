@@ -91,9 +91,16 @@ namespace System.Resources.Models
 		/// </summary>
 		/// <returns>The save.</returns>
 		/// <param name="fileName">Destination file.</param>
-		public void Save (string fileName)
+
+		public override void Save (string filePath, bool forceOverride = false)
 		{
-			Document.Save (fileName);
+			if (File.Exists (filePath)) {
+				if (forceOverride)
+					File.Delete (filePath);
+				else
+					throw new Exception ("there is a file with the same name");
+			}
+			Document.Save (filePath);
 		}
 	}
 }
